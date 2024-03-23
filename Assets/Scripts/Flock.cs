@@ -31,6 +31,7 @@ public class Flock : MonoBehaviour
     [SerializeField] private bool _debugShowNeighborRadius = true;
     [SerializeField] private bool _debugShowAvoidanceRadius = true;
     [SerializeField] private bool _debugShowNeighborhoodDensity = true;
+    [SerializeField] private bool _debugShowLineOfSightRadius = true;
     
     private float _squareMaxSpeed;
     private float _squareLineOfSightRadius;
@@ -40,9 +41,17 @@ public class Flock : MonoBehaviour
     
     private const float AGENT_DENSITY = 0.16f;
 
+    private Contexts _contexts;
+
+    public struct Contexts
+    {
+        public List<Transform> neighborhoodContext;
+        public List<Transform> immediateContext;
+        public List<Transform> lineOfSightContext;
+    }
+
     public void AddToFlock(FlockAgent agent)
     {
-       // agent.Flock.RemoveFromFlock(agent);
         agent.Flock = this;
         agent.transform.parent = transform;
         agent.Initialize(this);
@@ -99,22 +108,18 @@ public class Flock : MonoBehaviour
             if(agent.Paused)
                 continue;
 
-            var context = GetNearbyObjects(agent);
+
+            LoadAgentContexts(agent, ref _contexts);
+            
             Vector2 move = Vector2.zero;
 
             foreach (var behavior in _behaviors)
             {
-                move += behavior.CalculateMove(agent, context, this);
+                move += behavior.CalculateMove(agent, _contexts, this);
             }
 
             move *= _driveFactor;
-            
-            if (_debugShowNeighborhoodDensity)
-            {
-                // FOR DEMO ONLY
-                agent.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, context.Count / 6f);
-            }
-            
+
             // Limit speed
             if (move.sqrMagnitude > _squareMaxSpeed)
             {
@@ -139,6 +144,31 @@ public class Flock : MonoBehaviour
         return context;
     }
     
+    private void LoadAgentContexts(FlockAgent agent, ref Contexts contexts)
+    {
+        contexts.neighborhoodContext = new List<Transform>();
+        contexts.immediateContext = new List<Transform>();
+        contexts.lineOfSightContext = new List<Transform>();
+        var contextColliders = Physics.OverlapSphere(agent.transform.position, _lineOfSightRadius);
+        foreach (var collider in contextColliders)
+        {
+            if(collider != agent.AgentCollider)
+            {
+                var dist = Vector3.Distance(collider.transform.position, agent.transform.position);
+                contexts.lineOfSightContext.Add(collider.transform);
+                if (dist <= _neighborRadius)
+                {
+                    contexts.neighborhoodContext.Add(collider.transform);
+                }
+                else continue;
+                if (dist <= _neighborRadius * _avoidanceRadiusMultiplier)
+                {
+                    contexts.immediateContext.Add(collider.transform);
+                }
+            }
+        }
+    }
+    
     private void OnDrawGizmos()
     {
         if (_debugShowAvoidanceRadius || _debugShowNeighborRadius)
@@ -154,6 +184,11 @@ public class Flock : MonoBehaviour
                 {
                     Gizmos.color = Color.red;
                     Gizmos.DrawWireSphere(agent.transform.position, _neighborRadius * _avoidanceRadiusMultiplier);
+                }
+                if (_debugShowLineOfSightRadius)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawWireSphere(agent.transform.position, _lineOfSightRadius);
                 }
             }
         }

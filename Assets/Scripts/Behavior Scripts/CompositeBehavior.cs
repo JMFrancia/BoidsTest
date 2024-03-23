@@ -23,7 +23,7 @@ public class CompositeBehavior : AbstractFlockBehavior
         }
     }
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
         var move = Vector2.zero;
         foreach (var behavior in _behaviors)
@@ -31,12 +31,12 @@ public class CompositeBehavior : AbstractFlockBehavior
             if(behavior.Weight == 0) 
                 continue;
             
-            move += CalculateBehaviorMove(behavior, agent, context, flock);
+            move += CalculateBehaviorMove(behavior, agent, contexts, flock);
         }
         return move;
     }
     
-    private Vector2 CalculateBehaviorMove(WeightedBehavior weightedBehavior, FlockAgent agent, List<Transform> context, Flock flock)
+    private Vector2 CalculateBehaviorMove(WeightedBehavior weightedBehavior, FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
         if (weightedBehavior.Behavior is CompositeBehavior behavior && behavior == this)
         {
@@ -44,7 +44,7 @@ public class CompositeBehavior : AbstractFlockBehavior
             return Vector2.zero;
         }
 
-        var move = weightedBehavior.Behavior.CalculateMove(agent, context, flock) * weightedBehavior.Weight;
+        var move = weightedBehavior.Behavior.CalculateMove(agent, contexts, flock) * weightedBehavior.Weight;
         if (move != Vector2.zero)
         {
             if (move.sqrMagnitude > weightedBehavior.Weight * weightedBehavior.Weight)

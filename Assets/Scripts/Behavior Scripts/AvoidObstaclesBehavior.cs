@@ -6,8 +6,9 @@ public class AvoidObstaclesBehavior : AbstractFilteredFlockBehavior
 {
     private static Dictionary<Transform, Collider> _colliders = new Dictionary<Transform, Collider>();
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
+        var context = contexts.immediateContext;
         //if no neighbors, return no adjustment
         if (context.Count == 0)
         {

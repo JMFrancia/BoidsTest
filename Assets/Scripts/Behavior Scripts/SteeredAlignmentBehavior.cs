@@ -8,11 +8,11 @@ public class SteeredAlignmentBehavior : AlignmentBehavior
     
     private Vector2 currentVelocity;
     
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
         return Vector2.SmoothDamp(
             agent.transform.up,
-            base.CalculateMove(agent, context, flock),
+            base.CalculateMove(agent, contexts, flock),
             ref currentVelocity,
             _agentSmoothTime
             );

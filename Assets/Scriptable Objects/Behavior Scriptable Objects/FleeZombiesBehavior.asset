@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: FleeZombiesBehavior
   m_EditorClassIdentifier: 
   _filter: {fileID: 11400000, guid: ef7a00e9e428640499a89bc3360fab05, type: 2}
+  _avoidLineOfSight: 1
+  _speedUpFactor: 3

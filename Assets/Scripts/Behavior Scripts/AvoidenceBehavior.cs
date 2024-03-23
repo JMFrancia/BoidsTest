@@ -4,10 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Flock/Behavior/Avoidence")]
 public class AvoidenceBehavior : AbstractFilteredFlockBehavior
 {
+    [SerializeField] private bool _avoidLineOfSight = false;
     [SerializeField] private float _speedUpFactor = 3f;
     
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
+        var context = _avoidLineOfSight ? contexts.lineOfSightContext : contexts.immediateContext;
         //if no neighbors, return no adjustment
         if (context.Count == 0)
         {

@@ -27,7 +27,7 @@ public class FollowLeaderBehavior : AbstractFlockBehavior
     
     private Transform _leader;
     
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts context, Flock flock)
     {
         if (Leader == null)
         {

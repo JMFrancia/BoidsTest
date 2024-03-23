@@ -15,7 +15,7 @@ public class StayInRadiusBehavior : AbstractFlockBehavior
     
     [SerializeField] private bool _debugDrawRadius = true;
     
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
         var centerOffset = (Vector2)_center - (Vector2)agent.transform.position;
         var t = centerOffset.magnitude / _radius;
