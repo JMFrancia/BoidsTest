@@ -683,6 +683,7 @@ MonoBehaviour:
   _debugShowNeighborRadius: 0
   _debugShowAvoidanceRadius: 0
   _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!4 &614476929
 Transform:
   m_ObjectHideFlags: 0
@@ -2752,12 +2753,13 @@ MonoBehaviour:
   _startingCount: 1
   _driveFactor: 10
   _maxSpeed: 15
-  _lineOfSightRadius: 10
+  _lineOfSightRadius: 25
   _neighborRadius: 5
   _avoidanceRadiusMultiplier: 0.5
   _debugShowNeighborRadius: 0
   _debugShowAvoidanceRadius: 0
   _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!4 &1784141078
 Transform:
   m_ObjectHideFlags: 0
@@ -2809,12 +2811,13 @@ MonoBehaviour:
   _startingCount: 50
   _driveFactor: 10
   _maxSpeed: 14
-  _lineOfSightRadius: 10
+  _lineOfSightRadius: 15
   _neighborRadius: 5
   _avoidanceRadiusMultiplier: 0.5
   _debugShowNeighborRadius: 0
   _debugShowAvoidanceRadius: 0
   _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!4 &1793954517
 Transform:
   m_ObjectHideFlags: 0
@@ -2866,12 +2869,13 @@ MonoBehaviour:
   _startingCount: 50
   _driveFactor: 10
   _maxSpeed: 14
-  _lineOfSightRadius: 10
+  _lineOfSightRadius: 15
   _neighborRadius: 5
   _avoidanceRadiusMultiplier: 0.5
   _debugShowNeighborRadius: 0
   _debugShowAvoidanceRadius: 0
   _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!4 &1797808577
 Transform:
   m_ObjectHideFlags: 0
@@ -3238,12 +3242,13 @@ MonoBehaviour:
   _startingCount: 50
   _driveFactor: 10
   _maxSpeed: 14
-  _lineOfSightRadius: 10
+  _lineOfSightRadius: 15
   _neighborRadius: 5
   _avoidanceRadiusMultiplier: 0.5
   _debugShowNeighborRadius: 0
   _debugShowAvoidanceRadius: 0
   _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!4 &2127760338
 Transform:
   m_ObjectHideFlags: 0

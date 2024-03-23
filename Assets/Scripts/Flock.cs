@@ -79,7 +79,7 @@ public class Flock : MonoBehaviour
         _squareMaxSpeed = _maxSpeed * _maxSpeed;
         _squareLineOfSightRadius = _lineOfSightRadius * _lineOfSightRadius;
         _squareNeighborRadius = _neighborRadius * _neighborRadius;
-        _squareAvoidanceRadius = _squareNeighborRadius * _avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier;
+        _squareAvoidanceRadius = _squareNeighborRadius * (_avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier);
     }
 
     void Start()
@@ -107,8 +107,7 @@ public class Flock : MonoBehaviour
         {
             if(agent.Paused)
                 continue;
-
-
+            
             LoadAgentContexts(agent, ref _contexts);
             
             Vector2 move = Vector2.zero;
@@ -154,14 +153,16 @@ public class Flock : MonoBehaviour
         {
             if(collider != agent.AgentCollider)
             {
-                var dist = Vector3.Distance(collider.transform.position, agent.transform.position);
+                var sqMag = Vector2.SqrMagnitude(collider.ClosestPoint(agent.transform.position) - agent.transform.position);
+                if(sqMag > _squareLineOfSightRadius)
+                    continue;
                 contexts.lineOfSightContext.Add(collider.transform);
-                if (dist <= _neighborRadius)
+                if (sqMag <= _squareNeighborRadius)
                 {
                     contexts.neighborhoodContext.Add(collider.transform);
                 }
                 else continue;
-                if (dist <= _neighborRadius * _avoidanceRadiusMultiplier)
+                if (sqMag <= _squareAvoidanceRadius)
                 {
                     contexts.immediateContext.Add(collider.transform);
                 }
@@ -171,7 +172,7 @@ public class Flock : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        if (_debugShowAvoidanceRadius || _debugShowNeighborRadius)
+        if (_debugShowAvoidanceRadius || _debugShowNeighborRadius || _debugShowLineOfSightRadius)
         {
             foreach (var agent in _agents)
             {
@@ -187,7 +188,7 @@ public class Flock : MonoBehaviour
                 }
                 if (_debugShowLineOfSightRadius)
                 {
-                    Gizmos.color = Color.blue;
+                    Gizmos.color = Color.white;
                     Gizmos.DrawWireSphere(agent.transform.position, _lineOfSightRadius);
                 }
             }

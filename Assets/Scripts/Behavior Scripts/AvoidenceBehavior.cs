@@ -33,11 +33,11 @@ public class AvoidenceBehavior : AbstractFilteredFlockBehavior
             {
                 closestDist = dist;
             }
-            if (dist < flock.SquareAvoidanceRadius)
-            {
+           // if (dist < flock.SquareAvoidanceRadius)
+           // {
                 nAvoid++;
                 avoidanceMove += (Vector2)(agent.transform.position - item.position);
-            }
+            //}
         }
 
         if (nAvoid > 0)
@@ -45,7 +45,7 @@ public class AvoidenceBehavior : AbstractFilteredFlockBehavior
             avoidanceMove /= nAvoid;
         }
         
-        agent.VelocityMultiplier = Mathf.Lerp(1f, _speedUpFactor, 1f - (closestDist / flock.SquareAvoidanceRadius));
+        agent.VelocityMultiplier = Mathf.Lerp(1f, _speedUpFactor, 1f - (closestDist / (_avoidLineOfSight ? flock.SquareLineOfSightRadius : flock.SquareAvoidanceRadius)));
 
         return avoidanceMove;
     }

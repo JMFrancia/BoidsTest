@@ -26,11 +26,11 @@ public class AvoidObstaclesBehavior : AbstractFilteredFlockBehavior
             
             var collider = _colliders[item];
             Vector3 closestPoint = collider == null ? item.position : collider.ClosestPoint(agent.transform.position);
-            if (Vector2.SqrMagnitude(closestPoint - agent.transform.position) < flock.SquareAvoidanceRadius)
-            {
+            // if (Vector2.SqrMagnitude(closestPoint - agent.transform.position) < flock.SquareAvoidanceRadius)
+            // {
                 nAvoid++;
                 avoidanceMove += (Vector2)(agent.transform.position - closestPoint);
-            }
+           // }
         }
         if (nAvoid > 0)
             avoidanceMove /= nAvoid;
