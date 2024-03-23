@@ -4,6 +4,7 @@ using UnityEngine;
 public class ZombieFlockAgent : FlockAgent
 {
     [SerializeField] private float _zombieConversionTime = 1.5f;
+    [SerializeField] private FlockAgent _zombieAgentPrefab;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -22,9 +23,16 @@ public class ZombieFlockAgent : FlockAgent
         Paused = true;
         target.Paused = true;
         yield return new WaitForSeconds(_zombieConversionTime);
-        Flock.AddToFlock(target);
-        target.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        if(target != null)
+            ReplaceWithZombie(target);
         Paused = false;
-        target.Paused = false;
+    }
+    
+    private void ReplaceWithZombie(FlockAgent target)
+    {
+        var zombie = Instantiate(_zombieAgentPrefab, target.transform.position, target.transform.rotation);
+        target.Flock.RemoveFromFlock(target);
+        Flock.AddToFlock(zombie);
+        Destroy(target.gameObject);
     }
 }

@@ -42,7 +42,8 @@ public class Flock : MonoBehaviour
 
     public void AddToFlock(FlockAgent agent)
     {
-        agent.Flock.RemoveFromFlock(agent);
+       // agent.Flock.RemoveFromFlock(agent);
+        agent.Flock = this;
         agent.transform.parent = transform;
         agent.Initialize(this);
         _agents.Add(agent);

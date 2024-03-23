@@ -131,3 +131,5 @@ MonoBehaviour:
   _turnSmoothTime: 10
   _moveThreshold: 0
   _turnThreshold: 0.05
+  _zombieConversionTime: 1.5
+  _zombieAgentPrefab: {fileID: 7803621465201039558}

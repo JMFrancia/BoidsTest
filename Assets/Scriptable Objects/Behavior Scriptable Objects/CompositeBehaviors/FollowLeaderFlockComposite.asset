@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d37235ba78b64673b4116a417c9c662, type: 3}
   m_Name: FollowLeaderFlockComposite
   m_EditorClassIdentifier: 
-  _agentSmoothTime: 0.5
   _behaviors:
   - Behavior: {fileID: 11400000, guid: 64c475b2999a447c0a20f85c8f21662a, type: 2}
     Weight: 0.25
