@@ -6,4 +6,9 @@ public static class Constants
     }
     public static class Tags { }
     public static class Layers { }
+
+    public static class AnimationTriggers
+    {
+        public static string FIRE_WEAPON = "FireWeapon";
+    }
 }

@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350df89fc67884aab9450e57b7183973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 543405877986108287}
   _turnSmoothTime: 10
   _moveThreshold: 0
-  _turnThreshold: 0.05
 --- !u!54 &8949375487379899063
 Rigidbody:
   m_ObjectHideFlags: 0

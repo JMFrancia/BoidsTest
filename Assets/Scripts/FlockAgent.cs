@@ -5,6 +5,8 @@ public class FlockAgent : MonoBehaviour
 {
     public Collider AgentCollider => _agentCollider;
 
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
     public bool Paused
     {
         get => _paused;
@@ -13,7 +15,6 @@ public class FlockAgent : MonoBehaviour
 
     [SerializeField] private float _turnSmoothTime = 10f;
     [SerializeField] private float _moveThreshold = 0.5f;
-    [SerializeField] private float _turnThreshold = .05f;
 
     private Vector2 _oldPosition;
     private Vector2 _oldDirection;
@@ -60,10 +61,17 @@ public class FlockAgent : MonoBehaviour
         _oldPosition = newPosition;
         
         var newDirection = Vector2.Lerp(transform.up, velocity.normalized, _turnSmoothTime * Time.deltaTime);
-        // if (Vector2.Angle(newDirection, _oldDirection) < _turnThreshold)
-        //     return;
 
         transform.up = newDirection;
         _oldDirection = newDirection;
+    }
+
+    public void Die()
+    {
+        Flock.RemoveFromFlock(this);
+        GetComponent<Collider>().enabled = false;
+        Color c = _spriteRenderer.color;
+        c.a = .5f;
+        _spriteRenderer.color = c;
     }
 }

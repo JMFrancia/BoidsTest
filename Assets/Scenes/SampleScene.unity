@@ -423,6 +423,7 @@ Transform:
   - {fileID: 1793954517}
   - {fileID: 2127760338}
   - {fileID: 1797808577}
+  - {fileID: 1660325230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279378400
@@ -1386,8 +1387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
-  _minFOV: 45
-  _maxFOV: 106
+  _minFOV: 60
+  _maxFOV: 90
   _zoomSpeed: 1
 --- !u!1 &1010632174
 GameObject:
@@ -2572,6 +2573,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 279378401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.985}
+--- !u!1 &1660325229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660325230}
+  - component: {fileID: 1660325231}
+  m_Layer: 0
+  m_Name: SoldierFlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1660325230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660325229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15, y: 6.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 226327608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660325231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660325229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f874847d4b0c4e378f5c0c3a08b606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flockName: humans
+  _agentPrefab: {fileID: 5162897583631313355, guid: a30f403b4cc28452c94f91043cff0978, type: 3}
+  _behaviors:
+  - {fileID: 11400000, guid: 3fe0ed860445049649e5e44b69e79b31, type: 2}
+  _startingCount: 1
+  _driveFactor: 10
+  _maxSpeed: 14
+  _lineOfSightRadius: 15
+  _neighborRadius: 5
+  _avoidanceRadiusMultiplier: 0.5
+  _debugShowNeighborRadius: 0
+  _debugShowAvoidanceRadius: 0
+  _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 1
 --- !u!1 &1766082820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2815,7 +2874,7 @@ MonoBehaviour:
   _agentPrefab: {fileID: 7803621465201039558, guid: 523c8a2d5f1b24f928b3a32d3ae636b2, type: 3}
   _behaviors:
   - {fileID: 11400000, guid: baee5290361364571b8f18e35c3b19b1, type: 2}
-  _startingCount: 1
+  _startingCount: 10
   _driveFactor: 10
   _maxSpeed: 15
   _lineOfSightRadius: 25
@@ -2856,7 +2915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1793954516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,7 +2973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1797808576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3287,7 +3346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2127760337
 MonoBehaviour:
   m_ObjectHideFlags: 0

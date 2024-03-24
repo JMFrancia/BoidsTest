@@ -84,6 +84,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7803621465201039558}
   m_SourcePrefab: {fileID: 100100000, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+--- !u!212 &892035213655482076 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 543405877986108287, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+  m_PrefabInstance: {fileID: 858979752401943971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9037901289632016670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8540697216449516733, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
@@ -128,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346c442a296f4481bb1458e59d0aa684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 892035213655482076}
   _turnSmoothTime: 10
   _moveThreshold: 0
-  _turnThreshold: 0.05
   _zombieConversionTime: 1.5
   _zombieAgentPrefab: {fileID: 7803621465201039558}
