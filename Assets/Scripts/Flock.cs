@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
+    public int Population => _agents.Count;
     public float SquareLineOfSightRadius => _squareLineOfSightRadius;
     public float SquareAvoidanceRadius => _squareAvoidanceRadius;
     public string FlockName => _flockName;
