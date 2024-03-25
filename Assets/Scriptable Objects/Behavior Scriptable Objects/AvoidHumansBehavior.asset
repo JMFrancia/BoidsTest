@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6453627954b1f40fa8018c7f8b24bb29, type: 3}
-  m_Name: FireAtTargetBehavior
+  m_Script: {fileID: 11500000, guid: 57ee28596d7b04c528a2dc37d9d87580, type: 3}
+  m_Name: AvoidHumansBehavior
   m_EditorClassIdentifier: 
-  _filter: {fileID: 11400000, guid: ef7a00e9e428640499a89bc3360fab05, type: 2}
-  _reloadTime: 3
+  _filter: {fileID: 11400000, guid: 2c1f9fa1f2eab46ca9c1a4f6fe592008, type: 2}
+  _useLineOfSight: 0
+  _speedUpFactor: 1

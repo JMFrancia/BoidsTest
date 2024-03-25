@@ -45,7 +45,6 @@ public class DynamicFOV : MonoBehaviour
         var newFOV = Mathf.Lerp(_minFOV, _maxFOV, t);
         var deltaFOV = Mathf.Abs(_camera.fieldOfView - newFOV);
         var zoomTime = deltaFOV / _zoomSpeed;
-        Debug.Log("Setting FOV to " + newFOV + " in " + zoomTime + " seconds");
         _tween = DOTween.To(() => _camera.fieldOfView, x => _camera.fieldOfView = x, newFOV, zoomTime).SetEase(Ease.InOutSine);
     }
 }

@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviors:
   - Behavior: {fileID: 11400000, guid: 984c6e8f37e51413599703f62a0e205f, type: 2}
-    Weight: 0
+    Weight: 1
   - Behavior: {fileID: 11400000, guid: edca70b9cb8cb48c0865b1b03d5f1fc0, type: 2}
     Weight: 1
+  - Behavior: {fileID: 11400000, guid: eda17abd5231844c8bbc0103c78d401c, type: 2}
+    Weight: 5
+  - Behavior: {fileID: 11400000, guid: 2e41322594a16487faf5231a41dbbbf5, type: 2}
+    Weight: 2

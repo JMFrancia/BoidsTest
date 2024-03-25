@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ee28596d7b04c528a2dc37d9d87580, type: 3}
-  m_Name: AvoidenceBehavior
+  m_Script: {fileID: 11500000, guid: fbb1b5cf0e22e42bb910a839961dbf99, type: 3}
+  m_Name: HumanSpecificFlockFilter
   m_EditorClassIdentifier: 
-  _filter: {fileID: 11400000, guid: a3169d0e27da44ec4bf815c3b5319b3d, type: 2}
+  _flockName: humans

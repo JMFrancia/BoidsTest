@@ -40,21 +40,20 @@ public class MaintainRangeToGroupBehavior : AbstractFilteredFlockBehavior
             chaseMove /= nChase;
         }
 
-        Debug.Log("Closest dist: " + closestDist);
+        Vector2 finalResult;
         if(closestDist < _minDistance) // if too close, move away
         {
-            Debug.Log("Moving away from group!");
-            return -1 * chaseMove;
+            finalResult = -1 * chaseMove;
         }
         else if(closestDist > _maxDistance) // if too far, move closer
         {
-            Debug.Log("Moving toward from group!");
-            return chaseMove;
+            finalResult = chaseMove;
         }
         else
         {
-            Debug.Log("staying in range to group!");
-            return Vector2.zero;
+            finalResult = Vector2.zero;
         }
+
+        return finalResult;
     }
 }
