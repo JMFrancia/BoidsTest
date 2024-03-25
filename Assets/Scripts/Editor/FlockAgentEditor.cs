@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -11,7 +9,7 @@ public class FlockAgentEditor : Editor
       DrawDefaultInspector();
       FlockAgent agent = (FlockAgent)target;
 
-      if (agent == null)
+      if (agent?.Flock == null)
           return;
 
       EditorGUILayout.LabelField("Flock", agent?.Flock?.FlockName ?? "None");
@@ -25,11 +23,4 @@ public class FlockAgentEditor : Editor
           }
       }
    }
-
-   private Rect NewLineRect()
-     {
-         var result = EditorGUILayout.BeginHorizontal();
-         result.height = EditorGUIUtility.singleLineHeight;
-         return result;
-     }
 }

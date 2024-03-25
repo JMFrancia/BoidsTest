@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/Avoidence")]
 public class AvoidenceBehavior : AbstractFilteredFlockBehavior
 {
-    [SerializeField] private bool _avoidLineOfSight = false;
+    [FormerlySerializedAs("_avoidLineOfSight")] 
+    [SerializeField] private bool _useLineOfSight = false;
     [SerializeField] private float _speedUpFactor = 3f;
     
     public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
     {
-        var context = _avoidLineOfSight ? contexts.lineOfSightContext : contexts.immediateContext;
+        var context = _useLineOfSight ? contexts.lineOfSightContext : contexts.immediateContext;
         //if no neighbors, return no adjustment
         if (context.Count == 0)
         {
@@ -33,11 +35,8 @@ public class AvoidenceBehavior : AbstractFilteredFlockBehavior
             {
                 closestDist = dist;
             }
-           // if (dist < flock.SquareAvoidanceRadius)
-           // {
-                nAvoid++;
-                avoidanceMove += (Vector2)(agent.transform.position - item.position);
-            //}
+            nAvoid++;
+            avoidanceMove += (Vector2)(agent.transform.position - item.position);
         }
 
         if (nAvoid > 0)
@@ -45,7 +44,7 @@ public class AvoidenceBehavior : AbstractFilteredFlockBehavior
             avoidanceMove /= nAvoid;
         }
         
-        agent.VelocityMultiplier = Mathf.Lerp(1f, _speedUpFactor, 1f - (closestDist / (_avoidLineOfSight ? flock.SquareLineOfSightRadius : flock.SquareAvoidanceRadius)));
+        agent.VelocityMultiplier = Mathf.Lerp(1f, _speedUpFactor, 1f - (closestDist / (_useLineOfSight ? flock.SquareLineOfSightRadius : flock.SquareAvoidanceRadius)));
 
         return avoidanceMove;
     }

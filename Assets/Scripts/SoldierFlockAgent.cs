@@ -12,7 +12,7 @@ public class CanFireWeapon : MonoBehaviour
     {
         Debug.Log("Bang!");
         _muzzleFlash.SetActive(true);
-        _muzzleFlash.transform.LookAt(target.transform, Vector3.back);
+        _muzzleFlash.transform.right = -1 * (target.transform.position - _muzzleFlash.transform.position).normalized;
         _animator.SetTrigger(Constants.AnimationTriggers.FIRE_WEAPON);
         target.Die();
     }
