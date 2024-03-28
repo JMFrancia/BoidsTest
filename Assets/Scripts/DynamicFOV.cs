@@ -13,19 +13,19 @@ public class DynamicFOV : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListeningClass(Constants.Events.FLOCK_CHANGED, OnFlockChanged);
+        EventManager.StartListeningClass(Constants.Events.AGENT_ADDED_TO_FLOCK, OnFlockChanged);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListeningClass(Constants.Events.FLOCK_CHANGED, OnFlockChanged);
+        EventManager.StopListeningClass(Constants.Events.AGENT_ADDED_TO_FLOCK, OnFlockChanged);
     }
     
-    private void OnFlockChanged(GameObject agent)
+    private void OnFlockChanged(FlockAgent agent)
     {
-        if(agent.TryGetComponent<FlockAgent>(out var flockAgent) && flockAgent.Flock.FlockName == "zombies")
+        if(agent.Flock.FlockName == "zombies")
         {
-            float t = (float)flockAgent.Flock.Population / (float)FlockManager.Instance.WorldPopulation;
+            float t = (float)agent.Flock.Population / (float)FlockManager.Instance.WorldPopulation;
             SetFOV(t);
         }
     }

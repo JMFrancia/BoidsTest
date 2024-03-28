@@ -31,12 +31,12 @@ public abstract class AbstractFlockFilter : AbstractContextFilter
     
     private void OnEnable()
     {
-        EventManager.StartListeningClass(Constants.Events.FLOCK_CHANGED, OnFlockChanged);
+        EventManager.StartListeningClass(Constants.Events.AGENT_ADDED_TO_FLOCK, OnFlockChanged);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListeningClass(Constants.Events.FLOCK_CHANGED, OnFlockChanged);
+        EventManager.StopListeningClass(Constants.Events.AGENT_ADDED_TO_FLOCK, OnFlockChanged);
     }
     
     private void OnFlockChanged(GameObject agent)

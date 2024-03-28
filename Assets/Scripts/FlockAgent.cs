@@ -73,5 +73,7 @@ public class FlockAgent : MonoBehaviour
         Color c = _spriteRenderer.color;
         c.a = .5f;
         _spriteRenderer.color = c;
+        
+        EventManager.TriggerEvent(Constants.Events.AGENT_DIED, this);
     }
 }

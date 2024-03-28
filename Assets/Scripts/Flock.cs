@@ -57,7 +57,8 @@ public class Flock : MonoBehaviour
         agent.transform.parent = transform;
         agent.Initialize(this);
         _agents.Add(agent);
-        EventManager.TriggerEvent(Constants.Events.FLOCK_CHANGED, agent.gameObject);
+        
+        EventManager.TriggerEvent(Constants.Events.AGENT_ADDED_TO_FLOCK, agent);
     }
     
     public void RemoveFromFlock(FlockAgent agent)
