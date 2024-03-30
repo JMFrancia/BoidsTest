@@ -4790,8 +4790,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1784141078}
-  - component: {fileID: 1784141077}
   - component: {fileID: 1784141079}
+  - component: {fileID: 1784141080}
   m_Layer: 0
   m_Name: ZombieFlock
   m_TagString: Untagged
@@ -4799,32 +4799,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1784141077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784141076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f874847d4b0c4e378f5c0c3a08b606e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flockName: zombies
-  _agentPrefab: {fileID: 7803621465201039558, guid: 523c8a2d5f1b24f928b3a32d3ae636b2, type: 3}
-  _behaviors:
-  - {fileID: 11400000, guid: baee5290361364571b8f18e35c3b19b1, type: 2}
-  _startingCount: 3
-  _driveFactor: 10
-  _maxSpeed: 15
-  _lineOfSightRadius: 25
-  _neighborRadius: 5
-  _avoidanceRadiusMultiplier: 0.5
-  _debugShowNeighborRadius: 0
-  _debugShowAvoidanceRadius: 0
-  _debugShowNeighborhoodDensity: 0
-  _debugShowLineOfSightRadius: 1
 --- !u!4 &1784141078
 Transform:
   m_ObjectHideFlags: 0
@@ -4856,6 +4830,34 @@ MonoBehaviour:
   _color: {r: 0, g: 1, b: 0, a: 1}
   _size: 5
   _shape: 0
+--- !u!114 &1784141080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784141076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8174a25c63d5425caf5cbb1dd7e5c560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flockName: zombies
+  _agentPrefab: {fileID: 7803621465201039558, guid: 523c8a2d5f1b24f928b3a32d3ae636b2, type: 3}
+  _behaviors:
+  - {fileID: 11400000, guid: 86e760c20fe3241878a8cd823201336c, type: 2}
+  _startingCount: 40
+  _driveFactor: 10
+  _maxSpeed: 15
+  _lineOfSightRadius: 25
+  _neighborRadius: 5
+  _avoidanceRadiusMultiplier: 0.5
+  _debugShowNeighborRadius: 0
+  _debugShowAvoidanceRadius: 1
+  _debugShowNeighborhoodDensity: 0
+  _debugShowLineOfSightRadius: 0
+  _minAvoidenceRadiusMultiplier: 0.05
+  _maxAvoidenceRadiusMultiplier: 10
 --- !u!1 &1793954515
 GameObject:
   m_ObjectHideFlags: 0

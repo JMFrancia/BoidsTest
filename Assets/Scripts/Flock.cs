@@ -26,7 +26,7 @@ public class Flock : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float _neighborRadius = 1.5f;
     [Range(0f, 1f)]
-    [SerializeField] private float _avoidanceRadiusMultiplier = 0.5f;
+    [SerializeField] protected float _avoidanceRadiusMultiplier = 0.5f;
 
     [Header("Debug")]
     [SerializeField] private bool _debugShowNeighborRadius = true;
@@ -81,7 +81,12 @@ public class Flock : MonoBehaviour
         _squareMaxSpeed = _maxSpeed * _maxSpeed;
         _squareLineOfSightRadius = _lineOfSightRadius * _lineOfSightRadius;
         _squareNeighborRadius = _neighborRadius * _neighborRadius;
-        _squareAvoidanceRadius = _squareNeighborRadius * (_avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier);
+        UpdateSquareAvoidanceRadius();
+    }
+    
+    protected void UpdateSquareAvoidanceRadius()
+    {
+        _squareAvoidanceRadius = _squareNeighborRadius * _avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier;
     }
 
     void Start()
