@@ -10,11 +10,11 @@ public class Flock : MonoBehaviour
 
     public float MaxSpeed => _maxSpeed;
 
-    public List<CompositeBehavior.WeightedBehavior> AllBehaviors => GetAllBehaviors();
+    public List<WeightedBehavior> AllBehaviors => GetAllBehaviors();
 
     [SerializeField] private string _flockName;
     [SerializeField] FlockAgent _agentPrefab;
-    [SerializeField] private List<CompositeBehavior> _behaviors; 
+    [SerializeField] private List<AbstractCompositeFlockBehavior> _behaviors; 
     [Range(1, 500)]
     [SerializeField] private int _startingCount = 250;
     [Range(1f, 100f)]
@@ -66,9 +66,9 @@ public class Flock : MonoBehaviour
         _agents.Remove(agent);
     }
     
-    private List<CompositeBehavior.WeightedBehavior> GetAllBehaviors()
+    private List<WeightedBehavior> GetAllBehaviors()
     {
-        var allBehaviors = new List<CompositeBehavior.WeightedBehavior>();
+        var allBehaviors = new List<WeightedBehavior>();
         foreach (var behavior in _behaviors)
         {
             allBehaviors.AddRange(behavior.Behaviors);

@@ -10,18 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d37235ba78b64673b4116a417c9c662, type: 3}
-  m_Name: ZombieFlockComposite
+  m_Name: RampagingZombieComposite
   m_EditorClassIdentifier: 
   _behaviors:
-  - Behavior: {fileID: 11400000, guid: 64c475b2999a447c0a20f85c8f21662a, type: 2}
-    Weight: 0.25
   - Behavior: {fileID: 11400000, guid: 2e41322594a16487faf5231a41dbbbf5, type: 2}
-    Weight: 2
-  - Behavior: {fileID: 11400000, guid: 7e2b6d8afbfc84087ad9f7d51da244c4, type: 2}
-    Weight: 0.25
+    Weight: 3
   - Behavior: {fileID: 11400000, guid: eda17abd5231844c8bbc0103c78d401c, type: 2}
-    Weight: 4
-  - Behavior: {fileID: 11400000, guid: 7e2b6d8afbfc84087ad9f7d51da244c4, type: 2}
-    Weight: 1
-  - Behavior: {fileID: 11400000, guid: 226977f471bdf46fca9a337b2fece2dc, type: 2}
+    Weight: 10
+  - Behavior: {fileID: 11400000, guid: 56b1eac11278e49f9bd381722c84c6c3, type: 2}
+    Weight: 2
+  - Behavior: {fileID: 11400000, guid: edf47e2147ee84030a29bb94df135d09, type: 2}
     Weight: 1

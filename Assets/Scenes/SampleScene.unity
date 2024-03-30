@@ -4845,7 +4845,7 @@ MonoBehaviour:
   _flockName: zombies
   _agentPrefab: {fileID: 7803621465201039558, guid: 523c8a2d5f1b24f928b3a32d3ae636b2, type: 3}
   _behaviors:
-  - {fileID: 11400000, guid: 86e760c20fe3241878a8cd823201336c, type: 2}
+  - {fileID: 11400000, guid: 02d1748d120b14456b8d87ffe12acb47, type: 2}
   _startingCount: 40
   _driveFactor: 10
   _maxSpeed: 15
