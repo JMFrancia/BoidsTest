@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Flock : MonoBehaviour
 {
     public int Population => _agents.Count;
     public float SquareLineOfSightRadius => _squareLineOfSightRadius;
     public float SquareAvoidanceRadius => _squareAvoidanceRadius;
-    public string FlockName => _flockName;
+    public string Faction => _faction;
 
     public float MaxSpeed => _maxSpeed;
 
     public List<WeightedBehavior> AllBehaviors => GetAllBehaviors();
 
-    [SerializeField] private string _flockName;
+    [FormerlySerializedAs("_flockName")] [SerializeField] private string _faction;
     [SerializeField] FlockAgent _agentPrefab;
     [SerializeField] private List<AbstractCompositeFlockBehavior> _behaviors; 
     [Range(1, 500)]
@@ -64,6 +65,10 @@ public class Flock : MonoBehaviour
     public void RemoveFromFlock(FlockAgent agent)
     {
         _agents.Remove(agent);
+        if (_agents.Count == 0)
+        {
+            EventManager.TriggerEvent(Constants.Events.FLOCK_DEPLETED, this);
+        }
     }
     
     private List<WeightedBehavior> GetAllBehaviors()
@@ -103,7 +108,7 @@ public class Flock : MonoBehaviour
                 Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)), 
                 transform);
             newAgent.Initialize(this);
-            newAgent.name = $"{_flockName} agent {i}";
+            newAgent.name = $"{_faction} agent {i}";
             _agents.Add(newAgent);
         }
     }

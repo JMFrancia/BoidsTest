@@ -8,7 +8,7 @@ public abstract class AbstractFlockFilter : AbstractContextFilter
 
     //TODO: Should be flock. Some singleton manager to grab flock from name perhaps?
     //ALSO: Constant flock names
-    protected abstract string GetTargetFlockName(FlockAgent agent);
+    protected abstract string GetTargetFaction(FlockAgent agent);
     
     public override List<Transform> Filter(FlockAgent agent, List<Transform> original)
     {
@@ -23,7 +23,7 @@ public abstract class AbstractFlockFilter : AbstractContextFilter
             itemFlock = _flockAgents[item];
             if(itemFlock == null)
                 continue;
-            if(itemFlock.FlockName == GetTargetFlockName(agent))
+            if(itemFlock.Faction == GetTargetFaction(agent))
                 filtered.Add(item);
         }
         return filtered;

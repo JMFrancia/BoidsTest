@@ -12,7 +12,7 @@ public class ZombieFlockAgent : FlockAgent
         if (otherAgent == null)
             return;
         
-        if (otherAgent.Flock.FlockName == "humans")
+        if (otherAgent.Flock.Faction.Equals(Constants.Factions.HUMANS))
         {
             StartCoroutine(ConvertToZombie(otherAgent));
         }

@@ -29,6 +29,24 @@ public class FlockManager : MonoBehaviour
         _flocks = GetComponentsInChildren<Flock>();
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartListeningClass(Constants.Events.FLOCK_DEPLETED, OnFlockDepleted);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListeningClass(Constants.Events.FLOCK_DEPLETED, OnFlockDepleted);
+    }
+    
+    private void OnFlockDepleted(Flock flock)
+    {
+        if (GetFactionPopulation(flock.Faction) == 0)
+        {
+            EventManager.TriggerEvent(Constants.Events.FACTION_DEPLETED, flock.Faction);
+        }
+    }
+
     private int GetWorldPopulation()
     {
         int total = 0;
@@ -38,6 +56,15 @@ public class FlockManager : MonoBehaviour
         }
         return total;
     }
-
-
+    
+    private int GetFactionPopulation(string faction)
+    {
+        int total = 0;
+        for(int n = 0; n < _flocks.Length; n++)
+        {
+            if(_flocks[n].Faction.Equals(faction))
+                total += _flocks[n].Population;
+        }
+        return total;
+    }
 }

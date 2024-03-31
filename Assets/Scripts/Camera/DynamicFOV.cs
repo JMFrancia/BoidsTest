@@ -23,7 +23,7 @@ public class DynamicFOV : MonoBehaviour
     
     private void OnFlockChanged(FlockAgent agent)
     {
-        if(agent.Flock.FlockName == "zombies")
+        if(agent.Flock.Faction.Equals(Constants.Factions.ZOMBIES))
         {
             float t = (float)agent.Flock.Population / (float)FlockManager.Instance.WorldPopulation;
             SetFOV(t);

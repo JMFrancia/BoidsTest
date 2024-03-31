@@ -68,12 +68,12 @@ public class FlockAgent : MonoBehaviour
 
     public void Die()
     {
+        EventManager.TriggerEvent(Constants.Events.AGENT_DIED, this);
+        
         Flock.RemoveFromFlock(this);
         GetComponent<Collider>().enabled = false;
         Color c = _spriteRenderer.color;
         c.a = .5f;
         _spriteRenderer.color = c;
-        
-        EventManager.TriggerEvent(Constants.Events.AGENT_DIED, this);
     }
 }

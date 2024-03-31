@@ -12,6 +12,7 @@ public class EventManager
 	class UnityEventCamera : UnityEvent<Camera> { }
 	class UnityEventGameObject : UnityEvent<GameObject> { }
 	class UnityEventFlockAgent : UnityEvent<FlockAgent> { }
+	class UnityEventFlock : UnityEvent<Flock> { }
 
 	public static EventManager Instance = new EventManager();
 
@@ -24,6 +25,7 @@ public class EventManager
 	private Dictionary<string, UnityEventCamera> eventDictionaryCamera = new Dictionary<string, UnityEventCamera>();
 	private Dictionary<string, UnityEventGameObject> eventDictionaryGameObject = new Dictionary<string, UnityEventGameObject>();
 	private Dictionary<string, UnityEventFlockAgent> eventDictionaryFlockAgent = new Dictionary<string, UnityEventFlockAgent>();
+	private Dictionary<string, UnityEventFlock> eventDictionaryFlock = new Dictionary<string, UnityEventFlock>();
 
 	#region StartListening
 	public static void StartListening(string eventName, UnityAction listener)
@@ -161,6 +163,21 @@ public class EventManager
 			Instance.eventDictionaryFlockAgent.Add(eventName, thisEvent);
 		}
 	}
+	
+	public static void StartListeningClass(string eventName, UnityAction<Flock> listener)
+	{
+		UnityEventFlock thisEvent = null;
+		if (Instance.eventDictionaryFlock.TryGetValue(eventName, out thisEvent))
+		{
+			thisEvent.AddListener(listener);
+		}
+		else
+		{
+			thisEvent = new UnityEventFlock();
+			thisEvent.AddListener(listener);
+			Instance.eventDictionaryFlock.Add(eventName, thisEvent);
+		}
+	}
 
 	#endregion
 
@@ -281,6 +298,19 @@ public class EventManager
 			thisEvent.RemoveListener(listener);
 		}
 	}
+	
+	public static void StopListeningClass(string eventName, UnityAction<Flock> listener)
+	{
+		if (Instance == null)
+		{
+			return;
+		}
+		UnityEventFlock thisEvent = null;
+		if (Instance.eventDictionaryFlock.TryGetValue(eventName, out thisEvent))
+		{
+			thisEvent.RemoveListener(listener);
+		}
+	}
 
 	#endregion
 
@@ -361,6 +391,15 @@ public class EventManager
 	{
 		UnityEventFlockAgent thisEvent = null;
 		if (Instance != null && Instance.eventDictionaryFlockAgent.TryGetValue(eventName, out thisEvent))
+		{
+			thisEvent.Invoke(param);
+		}
+	}
+	
+	public static void TriggerEvent(string eventName, Flock param)
+	{
+		UnityEventFlock thisEvent = null;
+		if (Instance != null && Instance.eventDictionaryFlock.TryGetValue(eventName, out thisEvent))
 		{
 			thisEvent.Invoke(param);
 		}

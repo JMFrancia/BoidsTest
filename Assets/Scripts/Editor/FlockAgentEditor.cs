@@ -12,7 +12,7 @@ public class FlockAgentEditor : Editor
       if (agent?.Flock == null)
           return;
 
-      EditorGUILayout.LabelField("Flock", agent?.Flock?.FlockName ?? "None");
+      EditorGUILayout.LabelField("Flock", agent?.Flock?.Faction ?? "None");
       EditorGUILayout.LabelField("Behaviors");
       foreach (var behavior in agent.Flock.AllBehaviors)
       {

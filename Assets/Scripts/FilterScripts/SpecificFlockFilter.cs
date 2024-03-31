@@ -5,5 +5,5 @@ public class SpecificFlockFilter : AbstractFlockFilter
 {
     [SerializeField] private string _flockName;
     
-    protected override string GetTargetFlockName(FlockAgent agent) => _flockName;
+    protected override string GetTargetFaction(FlockAgent agent) => _flockName;
 }

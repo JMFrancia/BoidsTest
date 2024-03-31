@@ -17,6 +17,5 @@ public class SliderControlledLerpedCompositeBehavior : LerpedCompositeBehavior
     private void OnAggressionChanged(float value)
     {
         LerpValue = value;
-        Debug.Log("Lerp value is now " + value);
     }
 }
