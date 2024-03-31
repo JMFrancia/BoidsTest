@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SliderControlledRadiusFlock : Flock
 {
+    [Min(.25f)]
     [SerializeField] private float _minAvoidenceRadiusMultiplier = .5f;
     [SerializeField] private float _maxAvoidenceRadiusMultiplier = 3f;
 

@@ -11,6 +11,7 @@ public class LoadingBarController : MonoBehaviour
     [SerializeField] private float _inactivityBeforeHide = 3f;
     [SerializeField] private float _hideDuration = 0.5f;
     [SerializeField] private float _loadAnimationTime = .3f;
+    [SerializeField] private float _showAlpha = .5f;
     
     private Tween _loadTween;
     private Tween _hideTween;
@@ -24,7 +25,7 @@ public class LoadingBarController : MonoBehaviour
         
         _hideTween?.Kill();
         _showing = true;
-        _canvasGroup.alpha = 1f;
+        _canvasGroup.alpha = _showAlpha;
     }
 
     public void Hide(bool instant = false)

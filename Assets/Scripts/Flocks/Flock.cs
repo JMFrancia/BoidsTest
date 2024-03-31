@@ -86,7 +86,7 @@ public class Flock : MonoBehaviour
     
     protected void UpdateSquareAvoidanceRadius()
     {
-        _squareAvoidanceRadius = _squareNeighborRadius * _avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier;
+        _squareAvoidanceRadius = _squareNeighborRadius * (_avoidanceRadiusMultiplier * _avoidanceRadiusMultiplier);
     }
 
     void Start()
