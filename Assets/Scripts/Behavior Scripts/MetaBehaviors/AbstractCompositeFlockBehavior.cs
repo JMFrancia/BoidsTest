@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+/*
+ * Abstract class for composite flock behaviors that are made up of multiple behaviors
+ */
 public abstract class AbstractCompositeFlockBehavior : AbstractFlockBehavior
 {
     public abstract WeightedBehavior[] Behaviors { get;}

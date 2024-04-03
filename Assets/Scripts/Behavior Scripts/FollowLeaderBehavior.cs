@@ -1,33 +1,51 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/FollowLeaderBehavior")]
+/*
+ * Behavior that makes the agent follow a "leader" gameobject with specified tag
+ */
 public class FollowLeaderBehavior : AbstractFlockBehavior
 {
+    //Agents will slowdown when they are within the radius of the leader
     [SerializeField] private float _slowdownFactor = 0.1f;
 
-    //TODO: Better way to do this than relying on a tag? If so, make tag from list of constants
-    //Maybe have singleton manager that fetches meta data for the flock? Or flock keeps track of leader?
+    //TODO: Use const list of tags
     [SerializeField] private string _leaderTag;
-    [SerializeField] private float _radius = 15f;
+    [FormerlySerializedAs("_radius")] 
+    [SerializeField] private float _slowdownRadius = 15f; //Radius for slowdown factor
     [Range(0f, 1f)]
-    [SerializeField] private float _radiusThreshold = .9f;
+    [SerializeField] private float _radiusThreshold = .9f; //If closer than this, don't follow leader this step
     
     [SerializeField] private bool _debugDrawRadius = true;
 
-    private Transform Leader
-    {
-        get
-        {
-            if(_leader == null)
-                _leader = GameObject.FindGameObjectWithTag(_leaderTag)?.transform;
-            return _leader;
-        }
-    }
+    private Transform Leader => _leader ??= GetLeader(_leaderTag);
     
     private Transform _leader;
-    
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts context, Flock flock)
+    private static Dictionary<string, Transform> _leaderDict;
+
+    //Getter function for leader from tag
+    private Transform GetLeader(string leaderTag)
+    {
+        if (_leader != null)
+            return _leader;
+        
+        if(_leaderDict == null)
+            _leaderDict = new Dictionary<string, Transform>();
+        else if (_leaderDict.ContainsKey(leaderTag))
+            return _leaderDict[leaderTag];
+        
+        var leader = GameObject.FindGameObjectWithTag(leaderTag)?.transform;
+        if (leader == null)
+        {
+            Debug.LogError($"No leader found with tag {leaderTag}");
+            return null;
+        }
+        return leader;
+    }
+
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts context, Flock flock)
     {
         if (Leader == null)
         {
@@ -36,7 +54,7 @@ public class FollowLeaderBehavior : AbstractFlockBehavior
         }
 
         var centerOffset = (Vector2)Leader.position - (Vector2)agent.transform.position;  // offset from the leader
-        var t = centerOffset.magnitude / _radius; // if t > 1, agent is outside the radius
+        var t = centerOffset.magnitude / _slowdownRadius; // if t > 1, agent is outside the radius
         agent.VelocityMultiplier = Mathf.Lerp(_slowdownFactor, 1f, t); // slow down if inside the radius
         if (t < _radiusThreshold) // if t is within radius threshold, do nothing
         {
@@ -47,12 +65,13 @@ public class FollowLeaderBehavior : AbstractFlockBehavior
         return result;
     }
 
+    //Does this even work?
     private void OnDrawGizmos()
     {
         if (!_debugDrawRadius || Leader == null)
             return;
         
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(Leader.position, _radius);
+        Gizmos.DrawWireSphere(Leader.position, _slowdownRadius);
     }
 }

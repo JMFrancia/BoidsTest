@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Camera follow script
+ */
 public class CamFollow : MonoBehaviour
 {
     [SerializeField] Transform baseMovementObj;

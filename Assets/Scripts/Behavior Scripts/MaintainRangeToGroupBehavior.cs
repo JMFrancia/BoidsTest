@@ -1,14 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/MaintainRangeToGroup")]
+/*
+ * Behavior that makes the agent maintain a certain distance to a group of agents
+ */
 public class MaintainRangeToGroupBehavior : AbstractFilteredFlockBehavior
 {
+    //TODO: Can probably extend avoidence behavior
+    //TODO: Check _minDist < _maxDist, handle errors
     [SerializeField] private float _minDistance = 5f;
     [SerializeField] private float _maxDistance = 10f;
     
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         var context = contexts.lineOfSightContext;
         //if no neighbors, return no adjustment

@@ -1,5 +1,8 @@
 using System;
 
+/*
+ * Struct that holds a behavior and its weight
+ */
 [Serializable] public struct WeightedBehavior
 {
     public AbstractFlockBehavior Behavior;

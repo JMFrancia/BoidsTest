@@ -1,10 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/Alignment")]
+/*
+ * Behavior that aligns the agent with its neighbors
+ */
 public class AlignmentBehavior : AbstractFilteredFlockBehavior
 {
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         var context = contexts.neighborhoodContext;
         //if no neighbors, maintain current alignment

@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/LerpedComposite")]
+/*
+ * Composite behavior that lerps between two behaviors
+ */
 public class LerpedCompositeBehavior : AbstractCompositeFlockBehavior
 {
     public override WeightedBehavior[] Behaviors => new[] {_behavior1, _behavior2};
@@ -23,7 +26,7 @@ public class LerpedCompositeBehavior : AbstractCompositeFlockBehavior
         _lerpValue = _defaultLerpValue;
     }
 
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         var move = Vector2.zero;
         if(_lerpValue == 0) 

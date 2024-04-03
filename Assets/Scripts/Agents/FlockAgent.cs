@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+/* 
+    Controls a flock agent
+*/
 [RequireComponent(typeof(Collider))]
 public class FlockAgent : MonoBehaviour
 {
@@ -13,11 +17,10 @@ public class FlockAgent : MonoBehaviour
         set => _paused = value;
     }
 
-    [SerializeField] private float _turnSmoothTime = 10f;
-    [SerializeField] private float _moveThreshold = 0.5f;
+    [SerializeField] private float _turnSmoothTime = 10f; //Smooths turns
+    [SerializeField] private float _moveThreshold = 0.5f; //Minimum distance to move before updating position
 
     private Vector2 _oldPosition;
-    private Vector2 _oldDirection;
     private bool _paused;
     
     public Flock Flock
@@ -26,6 +29,7 @@ public class FlockAgent : MonoBehaviour
         set => _flock = value;
     }
     
+    //Used to modify speed for certain behaviors. Should have a better system for increasing / decreasing this
     public float VelocityMultiplier
     {
         get => _velocityMultiplier;
@@ -60,12 +64,10 @@ public class FlockAgent : MonoBehaviour
         transform.position = newPosition;
         _oldPosition = newPosition;
         
-        var newDirection = Vector2.Lerp(transform.up, velocity.normalized, _turnSmoothTime * Time.deltaTime);
-
-        transform.up = newDirection;
-        _oldDirection = newDirection;
+        transform.up = Vector2.Lerp(transform.up, velocity.normalized, _turnSmoothTime * Time.deltaTime);
     }
 
+    //Todo: Better to generate corpse obj?
     public void Die()
     {
         EventManager.TriggerEvent(Constants.Events.AGENT_DIED, this);

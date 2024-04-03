@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/AvoidObstacles")]
+/*
+ * Behavior that makes the agent avoid obstacles. Obstacles must be on obstacle layer
+ */
 public class AvoidObstaclesBehavior : AbstractFilteredFlockBehavior
 {
     private static Dictionary<Transform, Collider> _colliders = new Dictionary<Transform, Collider>();
 
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    //TODO: Extend or combine existing avoidence behavior? Perhaps add serialized variables to control what to avoid, and which context to use?
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         var context = contexts.immediateContext;
         //if no neighbors, return no adjustment
@@ -26,11 +30,8 @@ public class AvoidObstaclesBehavior : AbstractFilteredFlockBehavior
             
             var collider = _colliders[item];
             Vector3 closestPoint = collider == null ? item.position : collider.ClosestPoint(agent.transform.position);
-            // if (Vector2.SqrMagnitude(closestPoint - agent.transform.position) < flock.SquareAvoidanceRadius)
-            // {
-                nAvoid++;
-                avoidanceMove += (Vector2)(agent.transform.position - closestPoint);
-           // }
+            nAvoid++;
+            avoidanceMove += (Vector2)(agent.transform.position - closestPoint);
         }
         if (nAvoid > 0)
             avoidanceMove /= nAvoid;

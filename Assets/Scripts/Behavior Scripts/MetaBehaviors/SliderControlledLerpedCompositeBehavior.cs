@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/SliderControlledLerpedCompositeBehavior")]
+/*
+ * Composite behavior that lerps between two behaviors based on the "aggression" slider value
+ */
 public class SliderControlledLerpedCompositeBehavior : LerpedCompositeBehavior
 {
     private void OnEnable()

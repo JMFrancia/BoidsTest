@@ -3,13 +3,17 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/Avoidence")]
+/*
+ * Behavior that moves the agent away from its neighbors
+ */
 public class AvoidenceBehavior : AbstractFilteredFlockBehavior
 {
+    //TODO: Create a standardized way to set which context to use for each behavior (maybe a string -> List dict for each context? or use int for key w/ enum?)
     [FormerlySerializedAs("_avoidLineOfSight")] 
     [SerializeField] private bool _useLineOfSight = false;
-    [SerializeField] private float _speedUpFactor = 3f;
+    [SerializeField] private float _speedUpFactor = 3f; //Speed up factor will multiply an agents velocity by this factor when avoiding
     
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         var context = _useLineOfSight ? contexts.lineOfSightContext : contexts.immediateContext;
         //if no neighbors, return no adjustment

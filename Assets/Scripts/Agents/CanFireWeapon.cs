@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+ * Allows agent to fire weapon at specific target FLockAgent, killing it
+ */
+//TODO: Add a weapon class to handle weapon stats, damage, reload time, etc.
 public class CanFireWeapon : MonoBehaviour
 {
     [SerializeField] private Animator _animator;

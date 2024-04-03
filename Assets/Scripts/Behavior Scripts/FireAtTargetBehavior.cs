@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/FireAtTarget")]
+/*
+ * Behavior that makes the agent fire at the nearest target
+ */
 public class FireAtTargetBehavior : AbstractFilteredFlockBehavior
 {
-    public override Vector2 CalculateMove(FlockAgent agent, Flock.Contexts contexts, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)
     {
         if(!agent.TryGetComponent<CanFireWeapon>(out var canFireWeapon))
             return Vector2.zero;
@@ -19,6 +22,7 @@ public class FireAtTargetBehavior : AbstractFilteredFlockBehavior
         return Vector2.zero;
     }
 
+    //TODO: This should be a helper function in a utility class
     private Transform GetNearestTarget(FlockAgent agent, List<Transform> context)
     {
         Transform nearestTarget = null;

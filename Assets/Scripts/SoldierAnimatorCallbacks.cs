@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierAnimatorCalbacks : MonoBehaviour
+/*
+ * Callbacks for the soldier animator
+ */
+public class SoldierAnimatorCallbacks : MonoBehaviour
 {
     public void OnWeaponFireComplete()
     {

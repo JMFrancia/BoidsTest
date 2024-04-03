@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.UI;
 using UnityEngine.UI;
 
+/*
+ * Controller class for the aggression & spread slider UI
+ */
 public class SliderControlManager : MonoBehaviour
 {
     [SerializeField] private Slider _aggressionSlider;

@@ -1,8 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-
+/*
+ * Controller class for the loading bar UI
+ */
+//TODO: Standardize for Unity toolset
 public class LoadingBarController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _canvasGroup;

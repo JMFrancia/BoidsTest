@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+/*
+ * Extends FlockAgent to allow for conversion of human agents to zombie agents
+ */
+//TODO: Does this need to extend FlockAgent? 
 public class ZombieFlockAgent : FlockAgent
 {
     [SerializeField] private float _zombieConversionTime = 1.5f;

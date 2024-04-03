@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -12,8 +10,7 @@ public class SimpleGizmo : MonoBehaviour
     [SerializeField] Color _color = Color.green;
     [SerializeField] float _size = 1f;
     [SerializeField] GizmoShape _shape = GizmoShape.WireSphere;
-
-
+    
     [Serializable]
     enum GizmoShape
     {

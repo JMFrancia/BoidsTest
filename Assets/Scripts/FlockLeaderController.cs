@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Controller class for the flock leader
+ */
 public class FlockLeaderController : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
@@ -20,6 +23,7 @@ public class FlockLeaderController : MonoBehaviour
         Move(GetPlayerInput());
     }
     
+    //TODO: Replace w/ Unity input system
     private Vector3 GetPlayerInput()
     {
         Vector3 result = Vector3.zero;
