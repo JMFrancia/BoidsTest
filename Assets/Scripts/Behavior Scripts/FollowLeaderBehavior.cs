@@ -20,7 +20,7 @@ public class FollowLeaderBehavior : AbstractFlockBehavior
     
     [SerializeField] private bool _debugDrawRadius = true;
 
-    private Transform Leader => _leader ??= GetLeader(_leaderTag);
+    private Transform Leader => GetLeader(_leaderTag);
     
     private Transform _leader;
     private static Dictionary<string, Transform> _leaderDict;
@@ -42,6 +42,8 @@ public class FollowLeaderBehavior : AbstractFlockBehavior
             Debug.LogError($"No leader found with tag {leaderTag}");
             return null;
         }
+
+        _leader = leader;
         return leader;
     }
 
