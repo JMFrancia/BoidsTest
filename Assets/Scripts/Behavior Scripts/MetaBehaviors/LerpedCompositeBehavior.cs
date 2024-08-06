@@ -21,9 +21,9 @@ public class LerpedCompositeBehavior : AbstractCompositeFlockBehavior
     
     private float _lerpValue;
 
-    private void Awake()
+    protected void OnEnable()
     {
-        _lerpValue = _defaultLerpValue;
+        _lerpValue = _defaultLerpValue;\
     }
 
     public override Vector2 CalculateMove(FlockAgent agent, in Flock.Contexts contexts, Flock flock)

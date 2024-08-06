@@ -8,6 +8,7 @@ public static class Constants
         public static string SLIDER_SPREAD_CHANGED = "SliderSpreadChanged";
         public static string FLOCK_DEPLETED = "FlockDepleted";
         public static string FACTION_DEPLETED = "FactionDepleted";
+        public static string FRENZY_ACTIVATED = "FrenzyActivated";
     }
     public static class Tags { }
     public static class Layers { }
