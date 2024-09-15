@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +10,14 @@ public class ZombieFlockAgent : FlockAgent
 {
     [SerializeField] private float _zombieConversionTime = 1.5f;
     [SerializeField] private FlockAgent _zombieAgentPrefab;
-    
+
+    private void OnEnable()
+    {
+        //TODO: Just use separate animator for zombies
+        _animator.SetBool(Constants.AnimationBools.IS_ZOMBIE, true);
+        _animator.SetTrigger(Constants.AnimationTriggers.RUN);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var otherAgent = other.GetComponent<FlockAgent>();

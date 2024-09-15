@@ -1,5 +1,6 @@
+using System;
+using UnityEditor;
 using UnityEngine;
-
 
 /* 
     Controls a flock agent
@@ -8,9 +9,6 @@ using UnityEngine;
 public class FlockAgent : MonoBehaviour
 {
     public Collider AgentCollider => _agentCollider;
-
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-
     public bool Paused
     {
         get => _paused;
@@ -19,10 +17,27 @@ public class FlockAgent : MonoBehaviour
 
     [SerializeField] private float _turnSmoothTime = 10f; //Smooths turns
     [SerializeField] private float _moveThreshold = 0.5f; //Minimum distance to move before updating position
-
+    [SerializeField] private float _animationStateChangeCooldown = .2f;
+    
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] protected Animator _animator;
+    
+    protected AnimationState _animationState;
+    
     private Vector2 _oldPosition;
     private bool _paused;
+    private bool _canChangeAnimationState;
+    private float _timePassedSinceAnimationStateChange;
     
+    protected enum AnimationState
+    {
+        Running,
+        Attacking,
+        Idle,
+        Dying,
+        Dead
+    }
+
     public Flock Flock
     {
         get => _flock;
@@ -57,11 +72,16 @@ public class FlockAgent : MonoBehaviour
             return;
         
         var newPosition = (Vector2)transform.position + velocity * (Time.deltaTime * _velocityMultiplier);
-        
-        if (newPosition == _oldPosition || (_oldPosition - newPosition).magnitude < _moveThreshold)
+
+        if ((_oldPosition - newPosition).magnitude < _moveThreshold)
+        {
+            ChangeAnimationState(AnimationState.Idle);
             return;
-        
-        transform.position = newPosition;
+        }
+
+        ChangeAnimationState(AnimationState.Running);
+
+        transform.position = new Vector3(newPosition.x, newPosition.y, 2f);
         _oldPosition = newPosition;
         
         transform.up = Vector2.Lerp(transform.up, velocity.normalized, _turnSmoothTime * Time.deltaTime);
@@ -77,5 +97,41 @@ public class FlockAgent : MonoBehaviour
         Color c = _spriteRenderer.color;
         c.a = .5f;
         _spriteRenderer.color = c;
+    }
+
+    protected void ChangeAnimationState(AnimationState newState)
+    {
+        if (_animationState == newState || 
+            !_canChangeAnimationState)
+            return;
+        
+        Debug.Log($"Changing animation state from {_animationState} to {newState}");
+
+        _animationState = newState;
+
+        switch (_animationState)
+        {
+            case AnimationState.Running:
+                _animator.SetTrigger(Constants.AnimationTriggers.RUN);
+                break;
+            case AnimationState.Idle:
+                _animator.SetTrigger(Constants.AnimationTriggers.IDLE);
+                break;
+        }
+
+        _canChangeAnimationState = false;
+        _timePassedSinceAnimationStateChange = 0f;
+    }
+
+    private void Update()
+    {
+        if(!_canChangeAnimationState)
+        {
+            _timePassedSinceAnimationStateChange += Time.deltaTime;
+            if (_timePassedSinceAnimationStateChange >= _animationStateChangeCooldown)
+            {
+                _canChangeAnimationState = true;
+            }
+        }
     }
 }

@@ -19,8 +19,16 @@ public static class Constants
         public static string HUMANS = "humans";
     }
 
+    //TODO: Create parent static class Animation, then subclasses for Triggers, Bools, etc.
     public static class AnimationTriggers
     {
         public static string FIRE_WEAPON = "FireWeapon";
+        public static string RUN = "Run";
+        public static string IDLE = "Idle";
+    }
+
+    public static class AnimationBools
+    {
+        public static string IS_ZOMBIE = "Zombie";
     }
 }
