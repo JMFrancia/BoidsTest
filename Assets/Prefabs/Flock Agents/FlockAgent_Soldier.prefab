@@ -191,10 +191,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.39208794
       objectReference: {fileID: 0}
+    - target: {fileID: 5809461439643921402, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d36bf81f8ede11e499e74dbeb72a96bc, type: 2}
     - target: {fileID: 8540697216449516733, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
       propertyPath: m_Name
       value: FlockAgent_Soldier
       objectReference: {fileID: 0}
+    - target: {fileID: 9199640446150429161, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9467a9c47cf8094f96af7a326a8525e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -225,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 9183380619002121412}
   _muzzleFlash: {fileID: 4211411954435268397}
+  _reloadTime: 3
 --- !u!4 &7366851136983388101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 432818495131034797, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}

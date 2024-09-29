@@ -14,7 +14,6 @@ public class ZombieFlockAgent : FlockAgent
     private void OnEnable()
     {
         //TODO: Just use separate animator for zombies
-        _animator.SetBool(Constants.AnimationBools.IS_ZOMBIE, true);
         _animator.SetTrigger(Constants.AnimationTriggers.RUN);
     }
 
@@ -32,8 +31,10 @@ public class ZombieFlockAgent : FlockAgent
 
     private IEnumerator ConvertToZombie(FlockAgent target)
     {
+        ChangeAnimationState(AnimationState.Attacking);
         Paused = true;
         target.Paused = true;
+        target.ChangeAnimationState(AnimationState.Dying);
         yield return new WaitForSeconds(_zombieConversionTime);
         if(target != null)
             ReplaceWithZombie(target);

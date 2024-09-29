@@ -68,10 +68,18 @@ PrefabInstance:
       propertyPath: _turnSmoothTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5809461439643921402, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1b054ae827a2a1944a8f35f7ce276b9a, type: 2}
     - target: {fileID: 8540697216449516733, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
       propertyPath: m_Name
       value: FlockAgent_Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 9199640446150429161, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a7438ed9a486bf740bb4435f3e8d7133, type: 2}
     m_RemovedComponents:
     - {fileID: 2854074679457727139, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
     m_RemovedGameObjects: []

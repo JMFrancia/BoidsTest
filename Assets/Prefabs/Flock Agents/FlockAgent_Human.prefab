@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: _turnSmoothTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5809461439643921402, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: facec8c4f3c52e44996e59106bdb40b5, type: 2}
     - target: {fileID: 8540697216449516733, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
       propertyPath: m_Name
       value: FlockAgent_Human

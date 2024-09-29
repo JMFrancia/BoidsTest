@@ -29,7 +29,7 @@ public class FlockAgent : MonoBehaviour
     private bool _canChangeAnimationState;
     private float _timePassedSinceAnimationStateChange;
     
-    protected enum AnimationState
+    public enum AnimationState
     {
         Running,
         Attacking,
@@ -91,7 +91,7 @@ public class FlockAgent : MonoBehaviour
     public void Die()
     {
         EventManager.TriggerEvent(Constants.Events.AGENT_DIED, this);
-        
+        ChangeAnimationState(AnimationState.Dying);
         Flock.RemoveFromFlock(this);
         GetComponent<Collider>().enabled = false;
         Color c = _spriteRenderer.color;
@@ -99,9 +99,10 @@ public class FlockAgent : MonoBehaviour
         _spriteRenderer.color = c;
     }
 
-    protected void ChangeAnimationState(AnimationState newState)
+    public void ChangeAnimationState(AnimationState newState)
     {
-        if (_animationState == newState || 
+        if (_animator.runtimeAnimatorController == null ||
+            _animationState == newState || 
             !_canChangeAnimationState)
             return;
         
@@ -116,6 +117,12 @@ public class FlockAgent : MonoBehaviour
                 break;
             case AnimationState.Idle:
                 _animator.SetTrigger(Constants.AnimationTriggers.IDLE);
+                break;
+            case AnimationState.Dying:
+                _animator.SetTrigger(Constants.AnimationTriggers.DIE);
+                break;
+            case AnimationState.Attacking:
+                _animator.SetTrigger(Constants.AnimationTriggers.ATTACK);
                 break;
         }
 
