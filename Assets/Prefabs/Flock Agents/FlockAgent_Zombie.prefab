@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: _turnSmoothTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2982856221027120353, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: outlineColor.b
+      value: 0.14117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982856221027120353, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
+      propertyPath: outlineColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5809461439643921402, guid: e8497916274af4f63a581cfbad65f1bd, type: 3}
       propertyPath: m_Controller
       value: 
